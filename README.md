@@ -69,3 +69,18 @@ You can find example scripts for each algorithm in the `examples` directory. The
 cd examples
 python linear_regression_example.py
 ```
+
+## Contributing
+
+Contributions are welcome! If you would like to add a new algorithm, improve existing implementations, or fix bugs, please open a pull request. Make sure to follow the contribution guidelines.
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a pull request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
