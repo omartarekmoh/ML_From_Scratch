@@ -10,7 +10,6 @@ This repository contains implementations of various machine learning algorithms 
 - [Usage](#usage)
 - [Examples](#examples)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
