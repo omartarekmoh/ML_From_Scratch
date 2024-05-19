@@ -60,3 +60,12 @@ model.fit(X, y)
 predictions = model.predict(X)
 print(predictions)
 ```
+
+## Examples
+
+You can find example scripts for each algorithm in the `examples` directory. These scripts demonstrate how to use the algorithms on various datasets. To run an example, navigate to the `examples` directory and execute the script.
+
+```bash
+cd examples
+python linear_regression_example.py
+```
