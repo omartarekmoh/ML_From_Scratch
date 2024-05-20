@@ -11,4 +11,4 @@ To reproduce these results, follow these steps to clone the project:
 3. Run the following command:
 
 ```bash
-git clone <[repository_url](https://github.com/omartarekmoh/ML_From_Scratch)>
+git clone https://github.com/omartarekmoh/ML_From_Scratch
