@@ -1,6 +1,6 @@
 # Model Comparison Results Documentation
 
-This documentation provides details about a comparison between your custom model and the Sklearn model, including MSE comparison and coefficients.
+This documentation provides details about a comparison between pyatch models and the Sklearn Linear models, including a metric for comparison and coefficients if found.
 
 ## Clone the Project
 
@@ -27,12 +27,16 @@ Before running the comparison script, make sure you have the necessary dependenc
 
 After cloning the project and installing the dependencies, follow these steps to run the comparison:
 
+This can be used with any model that was made
+
 1. Navigate to the comparisons directory within the project.
-2. Run the `linear_comparison.py` script.
+2. Run the `*model_name*_comparison.py` script.
+
+Example:
 
 ```bash
 cd comparisons
-python linear_comparison.py
+python linear_regression_comparison.py
 ```
 ## Results
 
