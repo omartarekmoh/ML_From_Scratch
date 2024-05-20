@@ -17,11 +17,6 @@ git clone https://github.com/omartarekmoh/ML_From_Scratch
 
 Before running the comparison script, make sure you have the necessary dependencies installed:
 
-- **NumPy**: You can install it via pip:
-
-  ```bash
-  pip install numpy
-  ```
 - **Scikit-learn**: You can install it via pip:
 
   ```bash
