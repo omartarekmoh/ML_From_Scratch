@@ -44,7 +44,7 @@ pip install -r requirements.txt
 Each algorithm can be used by importing the respective module. Below is an example of how to use the Linear Regression implementation.
 
 ```python
-from linear_models.LinearRegression import LinearRegression
+from pyatch.linear_models.LinearRegression import LinearRegression
 import numpy as np
 
 # Generate some example data
