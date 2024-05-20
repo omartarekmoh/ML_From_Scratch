@@ -176,7 +176,16 @@ class LinearRegression:
             # Print the cost every 100 epochs
             if epoch % 100 == 0 and self.verbose:
                 cost = self.mse(preds, y)
-                print(f"total loss = {cost}")
+                self.coef_ = self.w[:, 1:]
+                self.intercept_ = self.w[:, 0]
+                coefs_str = ', '.join([f'{coef:.6f}' for coef in self.coef_.flatten()])
+                intercept_str = f'{self.intercept_[0]:.6f}'
+
+                print(f"Iteration {epoch} Summary:\n"
+                    f"-------------------------\n"
+                    f"Total Loss: {cost:.6f}\n"
+                    f"Coefficients: [{coefs_str}]\n"
+                    f"Intercept: {intercept_str}\n")
 
     def fit(self, X, y):
         """
@@ -196,3 +205,5 @@ class LinearRegression:
         # Extract the coefficients (weights for features) and intercept (bias term)
         self.coef_ = self.w[:, 1:]
         self.intercept_ = self.w[:, 0]
+
+
