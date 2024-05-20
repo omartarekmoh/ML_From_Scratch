@@ -12,3 +12,13 @@ To reproduce these results, follow these steps to clone the project:
 
 ```bash
 git clone https://github.com/omartarekmoh/ML_From_Scratch
+```
+### Installing Dependencies
+
+Before running the comparison script, make sure you have the necessary dependencies installed:
+
+- **NumPy**: You can install it via pip:
+
+  ```bash
+  pip install numpy
+  ```
