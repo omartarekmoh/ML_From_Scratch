@@ -24,7 +24,7 @@ Before running the comparison script, make sure you have the necessary dependenc
   ```
 - **Scikit-learn**: You can install it via pip:
 
-```bash
-pip install scikit-learn
-```
+  ```bash
+  pip install scikit-learn
+  ```
 
