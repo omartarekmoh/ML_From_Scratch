@@ -1,5 +1,7 @@
 import numpy as np
+import math
 
+import numpy as np
 
 class LinearRegression:
     """
@@ -11,8 +13,12 @@ class LinearRegression:
         Learning rate for gradient descent.
     n_epochs : int, optional (default=100)
         Number of epochs for training the model.
-    method : str, optional (default="batch_grad")
-        Method for gradient descent. Currently, only "batch_grad" is implemented.
+    method : str, optional (default="batch")
+        Method for gradient descent. "batch" for Batch Gradient Descent and "mini_batch" for Mini-batch Gradient Descent.
+    verbose : bool, optional (default=False)
+        If True, prints the loss and coefficients every 50 epochs for batch gradient and 100 epochs for mini-batch gradient.
+    batch_size : int, optional (default=64)
+        Batch size for mini-batch gradient descent.
 
     Attributes
     ----------
@@ -22,14 +28,13 @@ class LinearRegression:
         Intercept of the linear model.
     """
 
-    def __init__(
-        self, lr=0.01, n_epochs=100, *args, method="batch_grad", verbose=False
-    ):
-        # Initialize the learning rate, number of epochs, and method for gradient descent
+    def __init__(self, lr=0.01, n_epochs=100, method="batch", verbose=False, batch_size=64):
+        # Initialize the learning rate, number of epochs, method for gradient descent, verbosity, and batch size
         self.lr = lr
         self.n_epochs = n_epochs
         self.method = method
         self.verbose = verbose
+        self.batch_size = batch_size
 
     def getShape(self, X):
         """
@@ -45,10 +50,8 @@ class LinearRegression:
         tuple
             Number of rows and columns in X.
         """
-        # Return the shape of the input data
         X = np.array(X)
-        shape = X.shape
-        return shape[0], shape[1]
+        return X.shape
 
     def initialize(self, X):
         """
@@ -57,17 +60,15 @@ class LinearRegression:
         Parameters
         ----------
         X : np.ndarray
-            Input data with bias term added.
+            Input data.
 
         Returns
         -------
         np.ndarray
             Initialized weights.
         """
-        # Get the number of columns (features) in the input data
         _, cols = self.getShape(X)
-        # Initialize weights with small random values
-        w = np.random.randn(1, cols + 1) * 0.01
+        w = np.random.randn(1, cols + 1) * 0.01  # Initialize weights with small random values
         return w
 
     def addOnes(self, X):
@@ -84,11 +85,8 @@ class LinearRegression:
         np.ndarray
             Input data with a column of ones added.
         """
-        # Get the number of rows in the input data
         rows, _ = self.getShape(X)
-        # Create a column of ones
         ones = np.ones((rows, 1))
-        # Add the column of ones to the input data
         return np.hstack((ones, X))
 
     def predict(self, X):
@@ -98,17 +96,14 @@ class LinearRegression:
         Parameters
         ----------
         X : np.ndarray
-            Input data with bias term added.
+            Input data.
 
         Returns
         -------
         np.ndarray
             Predicted values.
         """
-        # Add a column of ones to the input data
         X_added_ones = self.addOnes(X)
-
-        # Compute the predicted values by multiplying input data with weights
         preds = np.dot(X_added_ones, self.w.T)
         return preds
 
@@ -128,25 +123,73 @@ class LinearRegression:
         float
             MSE loss.
         """
-
-        # Get the number of samples
         m, _ = self.getShape(y)
-        # Compute the difference between predicted and true values
         loss = preds - y
-        # Compute the Mean Squared Error
         cost = (1 / m) * np.sum(loss**2)
         return cost
 
     def compute_grads(self, X, y, preds):
-        m, _ = self.getShape(X)
-        # Compute the loss
-        loss = preds - y
-        # Add a column of ones to the input data
-        X_added_ones = self.addOnes(X)
-        # Compute the gradients
-        grads = (2 / m) * np.dot(loss.T, X_added_ones)
+        """
+        Compute the gradients of the loss with respect to the weights.
 
+        Parameters
+        ----------
+        X : np.ndarray
+            Input data.
+        y : np.ndarray
+            True values.
+        preds : np.ndarray
+            Predicted values.
+
+        Returns
+        -------
+        np.ndarray
+            Gradients of the weights.
+        """
+        m, _ = self.getShape(X)
+        loss = preds - y
+        X_added_ones = self.addOnes(X)
+        grads = (2 / m) * np.dot(loss.T, X_added_ones)
         return grads
+
+    def get_coef_(self):
+        """
+        Get the coefficients and intercept of the model.
+
+        Returns
+        -------
+        tuple
+            Coefficients and intercept.
+        """
+        coef_ = self.w[:, 1:]
+        intercept_ = self.w[:, 0]
+        return coef_, intercept_
+
+    def _print(self, epoch, preds, y):
+        """
+        Print the current state of the model during training.
+
+        Parameters
+        ----------
+        epoch : int
+            Current epoch.
+        preds : np.ndarray
+            Predicted values.
+        y : np.ndarray
+            True values.
+        """
+        cost = self.mse(preds, y)
+        coefficient, intercept = self.get_coef_()
+        coefs_str = ", ".join([f"{coef:.6f}" for coef in coefficient.flatten()])
+        intercept_str = f"{intercept[0]:.6f}"
+
+        print(
+            f"Iteration {epoch} Summary:\n"
+            f"-------------------------\n"
+            f"Total Loss: {cost:.6f}\n"
+            f"Coefficients: [{coefs_str}]\n"
+            f"Intercept: {intercept_str}\n"
+        )
 
     def batch_grad(self, X, y):
         """
@@ -159,33 +202,63 @@ class LinearRegression:
         y : np.ndarray
             True values.
         """
-        # Initialize the weights
         self.w = self.initialize(X)
-        # Get the number of samples (m) and features (n)
-        m, n = self.getShape(X)
-
-        # Iterate over the number of epochs
-        for epoch in range(self.n_epochs):
-            # Predict the values using the current weights
+        for epoch in range(self.n_epochs + 1):
             preds = self.predict(X)
-
             grads = self.compute_grads(X, y, preds)
-            # Update the weights using the gradients
             self.w -= self.lr * grads
 
-            # Print the cost every 100 epochs
-            if epoch % 100 == 0 and self.verbose:
-                cost = self.mse(preds, y)
-                self.coef_ = self.w[:, 1:]
-                self.intercept_ = self.w[:, 0]
-                coefs_str = ', '.join([f'{coef:.6f}' for coef in self.coef_.flatten()])
-                intercept_str = f'{self.intercept_[0]:.6f}'
+            if epoch % 50 == 0 and self.verbose:
+                self._print(epoch, preds, y)
 
-                print(f"Iteration {epoch} Summary:\n"
-                    f"-------------------------\n"
-                    f"Total Loss: {cost:.6f}\n"
-                    f"Coefficients: [{coefs_str}]\n"
-                    f"Intercept: {intercept_str}\n")
+    def generate_mini_batches(self, X, y, batch_size):
+        """
+        Generate mini-batches from the input data.
+
+        Parameters
+        ----------
+        X : np.ndarray
+            Input data.
+        y : np.ndarray
+            True values.
+        batch_size : int
+            Size of each mini-batch.
+
+        Yields
+        ------
+        tuple
+            Mini-batch of input data and true values.
+        """
+        num_examples = len(y)
+        indices = np.arange(num_examples)
+        np.random.shuffle(indices)
+
+        for start_idx in range(0, num_examples, batch_size):
+            end_idx = min(start_idx + batch_size, num_examples)
+            batch_indices = indices[start_idx:end_idx]
+            yield X[batch_indices], y[batch_indices]
+
+    def mini_batch_grad(self, X, y):
+        """
+        Train the model using mini-batch gradient descent.
+
+        Parameters
+        ----------
+        X : np.ndarray
+            Input data.
+        y : np.ndarray
+            True values.
+        """
+        self.w = self.initialize(X)
+        for epoch in range(self.n_epochs + 1):
+            mini_batch_generator = self.generate_mini_batches(X, y, self.batch_size)
+            for X_mini_batch, y_mini_batch in mini_batch_generator:
+                preds = self.predict(X_mini_batch)
+                grads = self.compute_grads(X_mini_batch, y_mini_batch, preds)
+                self.w -= self.lr * grads
+
+            if epoch % 100 == 0 and self.verbose:
+                self._print(epoch, self.predict(X), y)
 
     def fit(self, X, y):
         """
@@ -193,17 +266,15 @@ class LinearRegression:
 
         Parameters
         ----------
-        X : array-like, shape (n_samples, n_features)
+        X : np.ndarray
             Training data.
-        y : array-like, shape (n_samples,)
+        y : np.ndarray
             Target values.
         """
-        # Check the method and apply batch gradient descent
-        if self.method == "batch_grad":
+        if self.method == "batch":
             self.batch_grad(X, y)
-
-        # Extract the coefficients (weights for features) and intercept (bias term)
-        self.coef_ = self.w[:, 1:]
-        self.intercept_ = self.w[:, 0]
-
-
+        elif self.method == "mini_batch":
+            self.mini_batch_grad(X, y)
+        else:
+            raise ValueError("Method not recognized. Use 'batch' or 'mini_batch'.")
+        self.coef_, self.intercept_ = self.get_coef_()
