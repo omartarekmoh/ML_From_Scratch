@@ -28,3 +28,14 @@ Before running the comparison script, make sure you have the necessary dependenc
   pip install scikit-learn
   ```
 
+## Running the Comparison
+
+After cloning the project and installing the dependencies, follow these steps to run the comparison:
+
+1. Navigate to the comparisons directory within the project.
+2. Run the `linear_comparison.py` script.
+
+```bash
+cd comparisons
+python linear_comparison.py
+```
