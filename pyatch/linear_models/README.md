@@ -22,3 +22,11 @@ Before running the comparison script, make sure you have the necessary dependenc
   ```bash
   pip install numpy
   ```
+### Scikit-learn Installation
+
+You can install Scikit-learn via pip:
+
+```bash
+pip install scikit-learn
+```
+
