@@ -35,7 +35,7 @@ To get started, clone the repository and install the required dependencies.
 
 ```bash
 git clone https://github.com/omartarekmoh/ML_From_Scratch.git
-cd ml-algos-from-scratch
+cd pyatch
 pip install -r requirements.txt
 ```
 
@@ -44,7 +44,7 @@ pip install -r requirements.txt
 Each algorithm can be used by importing the respective module. Below is an example of how to use the Linear Regression implementation.
 
 ```python
-from algorithms.linear_regression import LinearRegression
+from linear_models.LinearRegression import LinearRegression
 import numpy as np
 
 # Generate some example data
