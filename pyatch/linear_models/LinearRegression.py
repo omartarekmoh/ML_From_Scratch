@@ -27,7 +27,7 @@ class LinearRegression:
     """
 
     def __init__(
-        self, lr=0.01, n_epochs=100, method="batch", *, verbose=False, batch_size=64
+        self, *, lr=0.01, n_epochs=100, method="batch", verbose=False, batch_size=64
     ):
         # Initialize the learning rate, number of epochs, method for gradient descent, verbosity, and batch size
         self.lr = lr
