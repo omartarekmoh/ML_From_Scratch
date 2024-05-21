@@ -1,2 +1,2 @@
-*.__pycache__
-*.tempCodeRunnerFile.py
+__pycache__/
+tempCodeRunnerFile.py
