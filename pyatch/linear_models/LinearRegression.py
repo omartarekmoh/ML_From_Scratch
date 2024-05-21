@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class LinearRegression:
     """
     Linear Regression model using gradient descent.
@@ -25,7 +26,9 @@ class LinearRegression:
         Intercept of the linear model.
     """
 
-    def __init__(self, lr=0.01, n_epochs=100, method="batch", verbose=False, batch_size=64):
+    def __init__(
+        self, lr=0.01, n_epochs=100, method="batch", *, verbose=False, batch_size=64
+    ):
         # Initialize the learning rate, number of epochs, method for gradient descent, verbosity, and batch size
         self.lr = lr
         self.n_epochs = n_epochs
@@ -65,7 +68,9 @@ class LinearRegression:
             Initialized weights.
         """
         _, cols = self.getShape(X)
-        w = np.random.randn(1, cols + 1) * 0.01  # Initialize weights with small random values
+        w = (
+            np.random.randn(1, cols + 1) * 0.01
+        )  # Initialize weights with small random values
         return w
 
     def addOnes(self, X):
