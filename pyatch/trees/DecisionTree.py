@@ -1,6 +1,7 @@
 import numpy as np
 from collections import Counter
 
+
 class Node:
     """
     Decision tree node representation.
@@ -14,7 +15,9 @@ class Node:
         cost (float): Impurity or information gain of the node.
     """
 
-    def __init__(self, right=None, left=None, feature=None, threshold=None, *, value, cost=np.inf):
+    def __init__(
+        self, right=None, left=None, feature=None, threshold=None, *, value, cost=np.inf
+    ):
         """
         Initializes a Node object.
 
@@ -42,6 +45,7 @@ class Node:
         """
         return np.isinf(self.cost)
 
+
 class DecisionTree:
     """
     A decision tree classifier implementation.
@@ -60,7 +64,9 @@ class DecisionTree:
         root (Node): The root node of the decision tree.
     """
 
-    def __init__(self, *, min_samples_split=2, max_depth=100, n_features=None, criterion="gini"):
+    def __init__(
+        self, *, min_samples_split=2, max_depth=100, n_features=None, criterion="gini"
+    ):
         self.min_samples_split = min_samples_split
         self.max_depth = max_depth
         self.n_features = n_features
@@ -77,7 +83,9 @@ class DecisionTree:
         Returns:
             None
         """
-        self.n_features = X.shape[1] if not self.n_features else min(self.n_features, X.shape[1])
+        self.n_features = (
+            X.shape[1] if not self.n_features else min(self.n_features, X.shape[1])
+        )
         self.root = self._grow_tree(X, y)
 
     def _split(self, X, threshold):
@@ -145,7 +153,7 @@ class DecisionTree:
             return 0
         _, counts = np.unique(y, return_counts=True)
         p = counts / m
-        return 1 - np.sum(p ** 2)
+        return 1 - np.sum(p**2)
 
     def _impurity(self, y, left_idxs, right_idxs):
         """
@@ -229,7 +237,11 @@ class DecisionTree:
         n_samples, n_features = X.shape
         n_label = len(np.unique(y))
 
-        if depth >= self.max_depth or n_label == 1 or n_samples < self.min_samples_split:
+        if (
+            depth >= self.max_depth
+            or n_label == 1
+            or n_samples < self.min_samples_split
+        ):
             leaf_value = self._most_common_label(y)
             return Node(value=leaf_value)
 
@@ -245,7 +257,14 @@ class DecisionTree:
         left = self._grow_tree(X[left_idxs], y[left_idxs], depth + 1)
         right = self._grow_tree(X[right_idxs], y[right_idxs], depth + 1)
 
-        return Node(left=left, right=right, feature=best_feature, threshold=best_thresh, value=self._most_common_label(y), cost=best_gain)
+        return Node(
+            left=left,
+            right=right,
+            feature=best_feature,
+            threshold=best_thresh,
+            value=self._most_common_label(y),
+            cost=best_gain,
+        )
 
     def predict(self, X):
         """
