@@ -182,7 +182,7 @@ class LinearRegression:
         """
         cost = self.mse(preds, y)
         coefficient, intercept = self.get_coef_()
-        coefs_str = ", ".join([f"{coef:.6f}" for coef in coefficient.flatten()])
+        coefs_str = ", ".join([f"{coef:.6f}" for coef in coefficient.ravel()])
         intercept_str = f"{intercept[0]:.6f}"
 
         print(
@@ -210,7 +210,7 @@ class LinearRegression:
             grads = self.compute_grads(X, y, preds)
             self.w -= self.lr * grads
 
-            if epoch % 50 == 0 and self.verbose:
+            if epoch % 100 == 0 and self.verbose:
                 self._print(epoch, preds, y)
 
     def generate_mini_batches(self, X, y, batch_size):
