@@ -1,5 +1,7 @@
 # Machine Learning Algorithms from Scratch
 
+Welcome to **Pydok**, a repository dedicated to implementing machine learning algorithms from scratch.
+
 This repository contains implementations of various machine learning algorithms written from scratch in Python. The aim is to provide a clear understanding of how these algorithms work under the hood.
 
 ## Table of Contents
