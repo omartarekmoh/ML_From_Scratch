@@ -23,7 +23,8 @@ The following algorithms are currently implemented in this repository:
 2. **Logistic Regression**
 3. **K-Nearest Neighbors (KNN) - On Going**
 4. **Decision Tree**
-5. **Support Vector Machine (SVM)**
+5. **Random Forest**
+6. **Support Vector Machine (SVM)**
 9. **Principal Component Analysis (PCA) - On Going**
 10. **Neural Networks - On Going**
 
