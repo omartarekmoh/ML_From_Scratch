@@ -36,20 +36,23 @@ Example:
 
 ```bash
 cd comparisons
-python linear_regression_comparison.py
+python decision_tree_comparison.py
 ```
+
 ## Results
 
-### Mean Squared Error Comparison
-- My Model: 2885.669
-- Sklearn Model: 2900.194
+### Training Time and Accuracy Comparison
 
-### Coefficients Comparison
+#### My DecisionTree Model
 
-#### My Model
-- Coefficients: [1.992, -11.431, 26.464, 16.321, -9.888, -2.272, -7.769, 8.176, 21.877, 2.562]
-- Intercept: 151.308
+  ```bash
+- **Time taken for training**: 5683.04 ms
+- **Accuracy**: 0.8947
+  ```
 
-#### Sklearn Model
-- Coefficients: [1.803, -11.509, 25.801, 16.539, -44.306, 24.642, 7.773, 13.096, 35.017, 2.315]
-- Intercept: 151.346
+#### Sklearn DecisionTreeClassifier
+
+  ```bash
+- **Time taken for training**: 69.80 ms
+- **Accuracy**: 0.9035
+-   ```
