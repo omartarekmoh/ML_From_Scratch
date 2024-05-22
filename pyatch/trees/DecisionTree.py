@@ -52,16 +52,17 @@ class DecisionTree:
 
     Parameters:
         min_samples_split (int): The minimum number of samples required to split an internal node.
-        max_depth (int): The maximum depth of the tree.
-        n_features (int): The number of features to consider when looking for the best split.
+        max_depth (int or float): The maximum depth of the tree.
+        n_features (int or None): The number of features to consider when looking for the best split.
         criterion (str): The function to measure the quality of a split. Supported criteria are "gini" for the Gini impurity and "entropy" for the information gain.
+        random_state (int, optional): Seed for random number generator.
 
     Attributes:
         min_samples_split (int): The minimum number of samples required to split an internal node.
-        max_depth (int): The maximum depth of the tree.
-        n_features (int): The number of features to consider when looking for the best split.
+        max_depth (int or float): The maximum depth of the tree.
+        n_features (int or None): The number of features to consider when looking for the best split.
         criterion (str): The function to measure the quality of a split.
-        root (Node): The root node of the decision tree.
+        root (Node or None): The root node of the decision tree.
     """
 
     def __init__(
@@ -70,12 +71,16 @@ class DecisionTree:
         min_samples_split=2,
         max_depth=np.inf,
         n_features=None,
-        criterion="gini"
+        criterion="gini",
+        random_state=None
     ):
         self.min_samples_split = min_samples_split
         self.max_depth = max_depth
         self.n_features = n_features
         self.criterion = criterion
+        self.root = None
+        if random_state is not None:
+            np.random.seed(random_state)
 
     def fit(self, X, y):
         """
