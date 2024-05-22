@@ -12,7 +12,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))  # Get the pa
 sys.path.append(parent_dir)  # Add the parent directory to the Python path
 
 # Import the custom RandomForest model
-from pydok.ensemble.RandomForest import RandomForest
+from pynot.ensemble.RandomForest import RandomForest
 
 # Generate some synthetic data
 X, y = make_classification(n_samples=100, n_features=20, n_classes=2, random_state=42)

@@ -15,7 +15,7 @@ parent_dir = os.path.abspath(
 sys.path.append(parent_dir)  # Add the parent directory to the Python path
 
 # Import the custom DecisionTree model
-from pydok.trees.DecisionTree import DecisionTree
+from pynot.trees.DecisionTree import DecisionTree
 
 # Load the breast cancer dataset from scikit-learn
 data = datasets.load_breast_cancer()

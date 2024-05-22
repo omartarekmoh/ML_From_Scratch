@@ -14,7 +14,7 @@ parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
 sys.path.append(parent_dir)
 
 # Import the custom LinearRegression model
-from pydok.linear_models.LinearRegression import LinearRegression
+from pynot.linear_models.LinearRegression import LinearRegression
 
 # Load the diabetes dataset
 data = load_diabetes()
