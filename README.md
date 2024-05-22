@@ -8,7 +8,7 @@ This repository contains implementations of various machine learning algorithms 
 - [Algorithms Implemented](#algorithms-implemented)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Examples](#examples)
+- [Comparisons](#comparisons)
 - [Contributing](#contributing)
 
 ## Introduction
@@ -60,13 +60,18 @@ predictions = model.predict(X)
 print(predictions)
 ```
 
-## Examples
+## Comparisons
 
-You can find example scripts for each algorithm in the `examples` directory. These scripts demonstrate how to use the algorithms on various datasets. To run an example, navigate to the `examples` directory and execute the script.
+You can find comparison scripts for each algorithm in the `comparisons` directory. These scripts demonstrate how to use the algorithms on various datasets and it's preformace against the scikit-learn algorithms. To run a comparison
+
+**This can be used with any model that was made**
+
+1. Navigate to the comparisons directory within the project.
+2. Run the `*model_name*_comparison.py` script.
 
 ```bash
-cd examples
-python linear_regression_example.py
+cd comparisons
+python linear_regression_comparison.py
 ```
 
 ## Contributing
