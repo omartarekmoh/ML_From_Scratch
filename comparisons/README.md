@@ -45,14 +45,14 @@ python decision_tree_comparison.py
 
 #### My DecisionTree Model
 
-  ```bash
-- **Time taken for training**: 5683.04 ms
-- **Accuracy**: 0.8947
-  ```
+```bash
+Time taken for training: 5683.04 ms
+Accuracy: 0.8947
+```
 
 #### Sklearn DecisionTreeClassifier
 
-  ```bash
-- **Time taken for training**: 69.80 ms
-- **Accuracy**: 0.9035
--   ```
+```bash
+Time taken for training: 69.80 ms
+Accuracy**: 0.9035
+```
