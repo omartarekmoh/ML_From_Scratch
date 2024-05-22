@@ -46,8 +46,8 @@ python decision_tree_comparison.py
 #### My DecisionTree Model
 
 ```bash
-Time taken for training: 5683.04 ms
-Accuracy: 0.885
+Time taken for training: 3912.94 ms
+Accuracy: 0.9035
 ```
 
 #### Sklearn DecisionTreeClassifier
