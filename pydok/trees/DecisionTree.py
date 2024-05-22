@@ -1,7 +1,6 @@
 import numpy as np
 from collections import Counter
 
-
 class Node:
     """
     Decision tree node representation.
@@ -74,6 +73,16 @@ class DecisionTree:
         criterion="gini",
         random_state=None
     ):
+        """
+        Initializes a DecisionTree object.
+
+        Args:
+            min_samples_split (int): The minimum number of samples required to split an internal node.
+            max_depth (int or float): The maximum depth of the tree.
+            n_features (int or None): The number of features to consider when looking for the best split.
+            criterion (str): The function to measure the quality of a split.
+            random_state (int, optional): Seed for random number generator.
+        """
         self.min_samples_split = min_samples_split
         self.max_depth = max_depth
         self.n_features = n_features
@@ -232,7 +241,7 @@ class DecisionTree:
         counter = Counter(y)
         return counter.most_common(1)[0][0]
 
-    def _grow_tree(self, X, y, depth=0):
+    def _grow_tree(self, X, y, depth=0, best_feat=None):
         """
         Recursively grow the decision tree.
 
@@ -255,7 +264,14 @@ class DecisionTree:
             leaf_value = self._most_common_label(y)
             return Node(value=leaf_value)
 
-        feat_idx = np.random.choice(n_features, self.n_features, replace=False)
+        available_features = np.arange(n_features)
+        
+        if best_feat is not None:
+            available_features = np.delete(available_features, best_feat)
+            
+        n_feats = min(self.n_features, len(available_features))
+       
+        feat_idx = np.random.choice(available_features, n_feats, replace=False)
         best_thresh, best_feature, best_gain = self._find_best_split(X, y, feat_idx)
 
         if best_gain == -1:
@@ -264,8 +280,8 @@ class DecisionTree:
 
         left_idxs, right_idxs = self._split(X[:, best_feature], best_thresh)
 
-        left = self._grow_tree(X[left_idxs], y[left_idxs], depth + 1)
-        right = self._grow_tree(X[right_idxs], y[right_idxs], depth + 1)
+        left = self._grow_tree(X[left_idxs], y[left_idxs], depth + 1, best_feat=best_feature)
+        right = self._grow_tree(X[right_idxs], y[right_idxs], depth + 1, best_feat=best_feature)
 
         return Node(
             left=left,
