@@ -1,3 +1,6 @@
 __pycache__/
 ml-algos-from-scratch/
 tempCodeRunnerFile.py
+*.pyc
+.vscode/
+.env
