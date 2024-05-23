@@ -1,5 +1,7 @@
 # Machine Learning Algorithms from Scratch
 
+Welcome to **Pynot**, a repository dedicated to implementing machine learning algorithms from scratch.
+
 This repository contains implementations of various machine learning algorithms written from scratch in Python. The aim is to provide a clear understanding of how these algorithms work under the hood.
 
 ## Table of Contents
@@ -36,7 +38,7 @@ To get started, clone the repository and install the required dependencies.
 
 ```bash
 git clone https://github.com/omartarekmoh/ML_From_Scratch.git
-cd ML_From_Scratch/pyatch
+cd ML_From_Scratch
 pip install -r requirements.txt
 ```
 
