@@ -90,6 +90,5 @@ Contributions are welcome! If you would like to add a new algorithm, improve exi
 
 ## Contributors
 
-- [@username1](https://github.com/username1)
-- [@username2](https://github.com/username2)
-- [Full Name](https://github.com/fullname)
+- [@omartarekmoh]([https://github.com/username1](https://github.com/omartarekmoh))
+- [@omarghazy56]([https://github.com/fullname](https://github.com/omarghazy56))
