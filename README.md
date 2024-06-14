@@ -88,3 +88,8 @@ Contributions are welcome! If you would like to add a new algorithm, improve exi
 5. Open a pull request
 
 
+## Contributors
+
+- [@username1](https://github.com/username1)
+- [@username2](https://github.com/username2)
+- [Full Name](https://github.com/fullname)
