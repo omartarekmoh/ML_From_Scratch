@@ -88,3 +88,7 @@ Contributions are welcome! If you would like to add a new algorithm, improve exi
 5. Open a pull request
 
 
+## Contributors
+
+- [@omartarekmoh](https://github.com/omartarekmoh)
+- [@omarghazy56](https://github.com/omarghazy56)
