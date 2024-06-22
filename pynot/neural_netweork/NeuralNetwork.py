@@ -20,8 +20,8 @@ class NeuralNetwork:
             out_dim = self.layers[i]
             stddev = np.sqrt(2 / (in_dim + out_dim))
             
-            weight_matrix = np.random.normal(loc=0.0, scale=stddev, size=(in_dim, out_dim))
-            bias_vector = np.random.normal(loc=0.0, scale=stddev, size=(1, out_dim))
+            weight_matrix = np.random.normal(loc=0.0, scale=stddev, size=(out_dim, in_dim))
+            bias_vector = np.random.normal(loc=0.0, scale=stddev, size=(out_dim, 1))
             
             self.weights.append(weight_matrix)
             self.biases.append(bias_vector)
@@ -46,7 +46,9 @@ class NeuralNetwork:
         A = X
         activations = [A]
         for weights, bias, activation in zip(self.weights, self.biases, self.activations):
-            Z = np.dot(A, weights) + bias
+            print(weights.T)
+            print(A)
+            Z = np.dot(weights.T, A) + bias
             A = self.activate(Z, activation)
             activations.append(A)
         return activations
