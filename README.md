@@ -26,9 +26,9 @@ The following algorithms are currently implemented in this repository:
 3. **K-Nearest Neighbors (KNN) - On Going**
 4. **Decision Tree**
 5. **Random Forest**
-6. **Support Vector Machine (SVM)**
+6. **Neural Networks**
+7. **Support Vector Machine (SVM)**
 9. **Principal Component Analysis (PCA) - On Going**
-10. **Neural Networks - On Going**
 
 Each algorithm is implemented in its own module with a corresponding example script demonstrating its usage.
 
