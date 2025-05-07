@@ -86,9 +86,3 @@ Contributions are welcome! If you would like to add a new algorithm, improve exi
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin feature/your-feature`)
 5. Open a pull request
-
-
-## Contributors
-
-- [@omartarekmoh](https://github.com/omartarekmoh)
-- [@omarghazy56](https://github.com/omarghazy56)
